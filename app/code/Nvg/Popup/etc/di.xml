@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nvg\Popup\Api\Repository\RequestPriceRepositoryInterface"
+            type="Nvg\Popup\Repository\RequestPrice"/>
+    <preference for="Nvg\Popup\Api\Model\RequestPriceInterface"
+                type="Nvg\Popup\Model\RequestPrice"/>
+    <virtualType name="Nvg\Popup\Model\ResourceModel\RequestPrice\GridCollection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">requests_for_prices</argument>
+            <argument name="resourceModel"
+                      xsi:type="string">Nvg\Popup\Model\ResourceModel\RequestPrice</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prices_manager_listing_data_source" xsi:type="string">Nvg\Popup\Model\ResourceModel\RequestPrice\GridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

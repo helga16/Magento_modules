@@ -1,0 +1,22 @@
+<?php
+/**
+ *  @var $block Magento\Catalog\Pricing\Render
+ */
+$productBlock = $block->getChildBlock('attributesForPopup');
+$sku = $productBlock->getProduct()->getSku();
+?>
+<button id="button" data-mage-init='{"addToCartPopup":{}}'>
+    <span><?= (__('Request Price')) ?></span>
+</button>
+<div id="modal">
+    <div class="modal-content" style="margin-top:200px">
+        <form id="form-validate" action="<?= $block->getUrl('request_price/index/save') ?>" method="post" enctype="multipart/form-data" data-mage-init='{"validation":{}}'>
+            <input name="name" class="userName" placeholder="Enter your Name" data-validate="{required:true}">
+            <input name="email" class="userEmail" placeholder="Enter your Email" data-validate="{required:true, 'validate-email':true}">
+            <input type="hidden" name="sku" value="<?= $sku ?>">
+            <textarea name="comment" class="userComment" placeholder="Enter your commit here"></textarea>
+            <button class="popupSubmit" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
